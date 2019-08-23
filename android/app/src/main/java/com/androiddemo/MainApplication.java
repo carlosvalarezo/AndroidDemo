@@ -18,6 +18,8 @@ import com.reactnativenavigation.react.ReactGateway;
 import java.util.List;
 import java.util.Arrays;
 
+import com.androiddemo.CustomToastPackage;
+
 public class MainApplication extends NavigationApplication {
 
   @Override
@@ -42,6 +44,7 @@ public class MainApplication extends NavigationApplication {
             // Add additional packages you require here
                     // No need to add RnnPackage and MainReactPackage
                     return Arrays.<ReactPackage>asList(
+                            new CustomToastPackage()
                         // eg. new VectorIconsPackage()
                     );
   }
