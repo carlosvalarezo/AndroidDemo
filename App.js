@@ -30,6 +30,8 @@ import {
 import { Navigation } from "react-native-navigation";
 import Two from './src/Two';
 
+import ViewUtil from "./src/ViewUtilModule";
+
 
 export default class App extends Component {
 
@@ -47,6 +49,27 @@ export default class App extends Component {
           });
   }
 
+  openJavaView(){
+    console.warn('opens java activity');
+    ViewUtil.keepScreenAwake();
+
+//        Navigation.push(this.props.componentId, {
+//              component: {
+//                name: 'navigation.Two'
+//              }
+//            });
+    }
+
+    openKotlinView(){
+        console.warn('opens Kotlin activity');
+
+    //        Navigation.push(this.props.componentId, {
+    //              component: {
+    //                name: 'navigation.Two'
+    //              }
+    //            });
+        }
+
   render() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -56,7 +79,9 @@ export default class App extends Component {
                 <Text style={[{color: 'red', textAlign: 'center'}]}>{`Custom Transition Screen`}</Text>
             </Navigation.Element>
         </TouchableOpacity>
-        <Button label='Show Modal' onPress={this.openRNView} />
+        <Button label='Show React Native' onPress={this.openRNView} />
+        <Button label='Show Java' onPress={this.openJavaView} />
+        <Button label='Show Kotlin' onPress={this.openKotlinView} />
       </View>
     );
   }

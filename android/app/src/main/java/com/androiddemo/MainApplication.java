@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Arrays;
 
 import com.androiddemo.CustomToastPackage;
+import com.androiddemo.ViewUtilPackage;
 
 public class MainApplication extends NavigationApplication {
 
@@ -44,7 +45,9 @@ public class MainApplication extends NavigationApplication {
             // Add additional packages you require here
                     // No need to add RnnPackage and MainReactPackage
                     return Arrays.<ReactPackage>asList(
-                            new CustomToastPackage()
+                            new CustomToastPackage(),
+                            new ViewUtilPackage(),
+                            new ImagePickerPackage()
                         // eg. new VectorIconsPackage()
                     );
   }

@@ -27,6 +27,7 @@ import {
 } from "react-native/Libraries/NewAppScreen";
 
 import ToastExample from './ToastExample';
+import ImagePicker from './ImagePicker';
 
 
 export default class Two extends Component {
@@ -37,6 +38,8 @@ export default class Two extends Component {
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text>Hello, world Two!</Text>
         <Button label='Show toast' onPress={() => ToastExample.show('Awesome', ToastExample.SHORT)} />
+        <Button label='Show ImagePicker' onPress={() => ImagePicker.openSelectDialog({},(uri) => { console.log(uri) },
+                                                                                       (error) => { console.log(error) })} />
       </View>
     );
   }
