@@ -8,6 +8,10 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
+
+import android.app.Activity;
+import android.content.Intent;
+
 import java.util.Map;
 import java.util.HashMap;
 

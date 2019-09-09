@@ -9,24 +9,38 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.bridge.WritableMap;
 
+
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 
-public class ImagePickerModule extends ReactContextBaseJavaModule implements ActivityEventListener {
+import android.widget.Toast;
+
+public class ImagePickerModule extends ReactContextBaseJavaModule{
 
     private static final int PICK_IMAGE = 1;
+    private static final int PICK_Camera_IMAGE = 2;
 
     private Callback pickerSuccessCallback;
     private Callback pickerCancelCallback;
 
     public ImagePickerModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        reactContext.addActivityEventListener(this);
     }
 
     @Override
     public String getName() {
         return "ImagePicker";
+    }
+
+    @ReactMethod
+    public void navigateToExample() {
+        Activity activity = getCurrentActivity();
+
+        if (activity != null) {
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            activity.startActivityForResult(intent, PICK_Camera_IMAGE);
+        }
     }
 
     @ReactMethod
@@ -45,7 +59,7 @@ public class ImagePickerModule extends ReactContextBaseJavaModule implements Act
             final Intent galleryIntent = new Intent();
 
             galleryIntent.setType("image/*");
-            galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+            galleryIntent.setAction(Intent.ACTION_VIEW);
 
             final Intent chooserIntent = Intent.createChooser(galleryIntent, "Pick an image");
 
@@ -55,29 +69,30 @@ public class ImagePickerModule extends ReactContextBaseJavaModule implements Act
         }
     }
 
-    @Override
+    @ReactMethod
+    public void openActivity() {
+        ReactApplicationContext activity = getReactApplicationContext();
+
+        if (activity != null) {
+            Toast.makeText(getReactApplicationContext(), activity.toString(), 10).show();
+            Intent rctActivityIntent = new Intent(activity, ExampleActivity.class);
+            activity.startActivity(rctActivityIntent);
+        }
+
+    }
+
+//    @Override
     public void onNewIntent(Intent intent) {
 //        super.onNewIntent(intent);
     }
 
 
-    @Override
+//    @Override
     public void onActivityResult(Activity activity, final int requestCode, final int resultCode, final Intent intent) {
         if (pickerSuccessCallback != null) {
             if (resultCode == Activity.RESULT_CANCELED) {
                 pickerCancelCallback.invoke("ImagePicker was cancelled");
             } else if (resultCode == Activity.RESULT_OK) {
-                //Uri uri = intent.getData();
-
-//                if (uri == null) {
-//                    pickerCancelCallback.invoke("No image data found");
-//                } else {
-//                    try {
-//                        pickerSuccessCallback.invoke(uri);
-//                    } catch (Exception e) {
-//                        pickerCancelCallback.invoke("No image data found");
-//                    }
-//                }
             }
         }
     }
