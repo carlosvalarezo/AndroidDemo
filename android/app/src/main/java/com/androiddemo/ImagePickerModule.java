@@ -1,20 +1,15 @@
 package com.androiddemo;
 
-import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.bridge.WritableNativeMap;
-import com.facebook.react.bridge.WritableMap;
-
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 
-import android.widget.Toast;
+import javax.annotation.Nonnull;
 
 public class ImagePickerModule extends ReactContextBaseJavaModule{
 
@@ -28,6 +23,7 @@ public class ImagePickerModule extends ReactContextBaseJavaModule{
         super(reactContext);
     }
 
+    @Nonnull
     @Override
     public String getName() {
         return "ImagePicker";
@@ -72,22 +68,30 @@ public class ImagePickerModule extends ReactContextBaseJavaModule{
     @ReactMethod
     public void openActivity() {
         ReactApplicationContext activity = getReactApplicationContext();
+            Intent rctActivityIntent = new Intent(activity,ExampleActivity.class);
+            if(rctActivityIntent.resolveActivity(activity.getPackageManager()) !=null ) {
+                rctActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity.startActivity(rctActivityIntent);
+            }
+    }
 
-        if (activity != null) {
-            Toast.makeText(getReactApplicationContext(), activity.toString(), 10).show();
-            Intent rctActivityIntent = new Intent(activity, ExampleActivity.class);
+    @ReactMethod
+    public void openOtherActivity() {
+        ReactApplicationContext activity = getReactApplicationContext();
+
+
+        Intent rctActivityIntent = new Intent(activity, Main2Activity.class);
+        if(rctActivityIntent.resolveActivity(activity.getPackageManager()) !=null ) {
+            rctActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(rctActivityIntent);
         }
 
     }
 
-//    @Override
     public void onNewIntent(Intent intent) {
-//        super.onNewIntent(intent);
     }
 
 
-//    @Override
     public void onActivityResult(Activity activity, final int requestCode, final int resultCode, final Intent intent) {
         if (pickerSuccessCallback != null) {
             if (resultCode == Activity.RESULT_CANCELED) {

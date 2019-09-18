@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactInstanceManager;
@@ -19,7 +20,7 @@ import com.facebook.react.bridge.WritableNativeArray;
  * Activity to start from React Native JavaScript, triggered via
  * {@link ActivityStarterModule#navigateToExample()}.
  */
-public final class ExampleActivity extends ReactActivity {
+public final class ExampleActivity extends AppCompatActivity {
 
     @Override
     @CallSuper

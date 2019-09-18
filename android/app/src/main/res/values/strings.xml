@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">AndroidDemo</string>
     <string name="example_activity_title">ExampleActivity</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
 </resources>

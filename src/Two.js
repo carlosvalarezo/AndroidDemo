@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, { Fragment, Component } from "react";
+import React, { Fragment, Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,7 +14,7 @@ import {
   View,
   Text,
   StatusBar,
-} from "react-native";
+} from 'react-native';
 
 const { Button } = require('react-native-ui-lib');
 
@@ -23,24 +23,48 @@ import {
   LearnMoreLinks,
   Colors,
   DebugInstructions,
-  ReloadInstructions
-} from "react-native/Libraries/NewAppScreen";
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
 
 import ToastExample from './ToastExample';
 import ImagePicker from './ImagePicker';
 
-
 export default class Two extends Component {
-
-render() {
+  render() {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Hello, world Two!</Text>
-        <Button label='Show toast' onPress={() => ToastExample.show('Awesome', ToastExample.SHORT)} />
-        <Button label='Show ImagePicker' onPress={() => ImagePicker.openSelectDialog({},(uri) => { console.log(uri) },
-                                                                                       (error) => { console.log(error) })} />
+        <Button
+          label="Show toast"
+          onPress={() => ToastExample.show('Awesome', ToastExample.SHORT)}
+        />
+        <Button
+          label="Show ImagePicker"
+          onPress={() =>
+            ImagePicker.openSelectDialog(
+              {},
+              uri => {
+                console.log(uri);
+              },
+              error => {
+                console.log(error);
+              }
+            )
+          }
+        />
 
-        <Button label='Show Open java activity' onPress={() => ImagePicker.navigateToExample()} />
+        <Button
+          label="Open java camera"
+          onPress={() => ImagePicker.navigateToExample()}
+        />
+        <Button
+          label="Show java activity"
+          onPress={() => ImagePicker.openActivity()}
+        />
+        <Button
+          label="Show another activity"
+          onPress={() => ImagePicker.openOtherActivity()}
+        />
       </View>
     );
   }

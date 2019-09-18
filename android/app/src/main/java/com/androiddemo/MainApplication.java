@@ -1,15 +1,7 @@
 package com.androiddemo;
 
-import android.app.Application;
-import android.util.Log;
-
-import com.facebook.react.PackageList;
-import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
-import com.facebook.react.bridge.JavaScriptExecutorFactory;
-import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.soloader.SoLoader;
 
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
@@ -17,9 +9,6 @@ import com.reactnativenavigation.react.ReactGateway;
 
 import java.util.List;
 import java.util.Arrays;
-
-import com.androiddemo.CustomToastPackage;
-import com.androiddemo.ViewUtilPackage;
 
 public class MainApplication extends NavigationApplication {
 
@@ -46,7 +35,6 @@ public class MainApplication extends NavigationApplication {
                     // No need to add RnnPackage and MainReactPackage
                     return Arrays.<ReactPackage>asList(
                             new CustomToastPackage(),
-                            new ViewUtilPackage(),
                             new ImagePickerPackage()
                         // eg. new VectorIconsPackage()
                     );
